@@ -1,12 +1,13 @@
 def solution(s):
-    answer = []
+    result = ''
     for i in s:
-        if i == "(":
-            answer.append("(")
+        if i == '(':
+            result += i
         else:
-            if answer == []:
-                return False
+            if result and result[-1] == '(':
+                result = result[:-1]
             else:
-                answer.pop()
-    return answer == []
-        
+                return False
+    if result:
+        return False
+    return True
