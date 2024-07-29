@@ -1,4 +1,10 @@
 def solution(s):
-    s = s.split(' ')
-    print(s)
-    return ' '.join(i.capitalize() for i in s)
+    result = ''
+    for i in list(s):
+        if not result:
+            result += i.upper()
+        elif result[-1] == ' ':
+            result += i.upper()
+        else:
+            result += i.lower()
+    return result
