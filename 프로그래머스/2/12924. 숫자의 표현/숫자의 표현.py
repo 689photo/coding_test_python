@@ -1,13 +1,11 @@
 def solution(n):
-    answer = 0
+    result = 0
+    temp = []
     for i in range(1, n + 1):
-        sum = 0
-        for j in range(i, n + 1):
-            sum += j
-            if sum == n:
-                answer += 1
-                break
-            elif sum > n:
-                break
-    return answer
-                
+        temp.append(i)
+        if sum(temp) > n:
+            while sum(temp) > n:
+                temp.pop(0)
+        if sum(temp) == n:
+            result += 1
+    return result
