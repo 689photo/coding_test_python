@@ -1,13 +1,18 @@
-from collections import Counter
 def solution(k, tangerine):
-    cnt = list(Counter(tangerine).items())
-    cnt.sort(key=lambda x:x[1], reverse=True)
+    result = {}
+    
+    for i in tangerine:
+        if i in result:
+            result[i] += 1
+        else:
+            result[i] = 1
+    
+    result = sorted(result.values(), reverse = True)
+    
     answer = 0
-    
-    for i in cnt:
-        k -= i[1]
-        answer += 1
-        if k <= 0:
-            break
-    
-    return answer
+    count = 0
+    for i in result:
+        answer += i
+        count += 1
+        if answer >= k:
+            return count
