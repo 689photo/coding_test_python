@@ -1,13 +1,12 @@
 def solution(n, words):
-    result = []
-    oc = []
-    for x, y in enumerate(words):
-        if y in oc:
-                return [(x % n) + 1, (x // n) + 1]
-        oc.append(y)
-        if len(oc) > 1:
-            if oc[-2][-1] != y[0]:
-                return [(x % n) + 1, (x // n) + 1]
-    else:
-        return [0,0]
-                
+    result = [words[0]]
+    
+    for i in range(1, len(words)):
+        if words[i] in result:
+            return [(i % n) + 1, (i // n) + 1]
+        elif result[-1][-1] != words[i][0]:
+            return [(i % n) + 1, (i // n) + 1]
+        else:
+            result.append(words[i])
+            
+    return [0, 0]
