@@ -1,9 +1,7 @@
-from math import ceil
 def solution(n,a,b):
-    rnd = 0 
+    count = 0
     while a != b:
-        rnd += 1
-        a = ceil(a/2)
-        b = ceil(b/2)
-    
-    return rnd
+        count += 1
+        a = (a + 1) // 2
+        b = (b + 1) // 2
+    return count
