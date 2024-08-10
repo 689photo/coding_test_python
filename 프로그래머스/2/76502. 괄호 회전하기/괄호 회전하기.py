@@ -1,48 +1,28 @@
 def solution(s):
     answer = 0
-    lst = list(s)
     
-    for i in range(len(lst)):
-        stack = []
-        for x in range(len(lst)):
-            if stack:
-                if stack[-1] == '[' and lst[x] == ']':
-                    stack.pop()
-                elif stack[-1] == '{' and lst[x] == '}':
-                    stack.pop()
-                elif stack[-1] == '(' and lst[x] == ')':
-                    stack.pop()
-                else:
-                    stack.append(lst[x])
-            else:
-                stack.append(lst[x])
-        
-        if len(stack) == 0:
-            answer += 1
-        lst.append(lst.pop(0))
-    return answer
-    
-    
-    """
-    answer = 0
-    lst = list(s)
+    if len(s) % 2 == 1:
+        return 0
     
     for i in range(len(s)):
-        temp = []
-        for x in range(len(lst)):
-            if len(temp) > 0:
-                if temp[-1] == '[' and lst[x] == ']':
-                    temp.pop()
-                elif temp[-1] == '(' and lst[x] == ')':
-                    temp.pop()
-                elif temp[-1] == '{' and lst[x] == '}':
-                    temp.pop()
-                else:
-                    temp.append(lst[x])
+        result = []
+        v = True
+        for a in s[i:] + s[:i]:
+            if a in '[{(':
+                result.append(a)
+            elif a == ']' and (not result or result[-1] != '['):
+                v = False
+                break
+            elif a == '}' and (not result or result[-1] != '{'):
+                v = False
+                break
+            elif a == ')' and (not result or result[-1] != '('):
+                v = False
+                break
             else:
-                temp.append(lst[x])
-            
-        if len(temp) == 0:
+                result.pop()
+        
+        if v and not result:
             answer += 1
-        lst.append(lst.pop(0))
-    return answer"""
+        
+    return answer           
