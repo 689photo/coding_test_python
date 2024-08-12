@@ -1,17 +1,11 @@
 from collections import Counter
 
 def solution(want, number, discount):
-    want_dict = dict(zip(want, number))
-    
-    n = len(discount)
-    window_size = 10
-    result = 0
-    
-    for i in range(n - window_size + 1):
-        current_window = discount[i:i + window_size]
-        current_count = Counter(current_window)
-        
-        if all(current_count.get(item, 0) >= want_dict[item] for item in want_dict):
-            result += 1
-    
-    return result
+    answer = 0
+    dic = dict(zip(want, number))
+
+    for i in range(len(discount) - 9):
+        if dic == Counter(discount[i:i + 10]): 
+            answer += 1
+
+    return answer
