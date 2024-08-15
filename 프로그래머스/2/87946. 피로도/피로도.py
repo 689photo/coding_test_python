@@ -1,15 +1,19 @@
 from itertools import permutations
+
 def solution(k, dungeons):
-    result = []
-    comb = list(permutations(dungeons, len(dungeons)))
-    for x in comb:
-        num = k
-        answer = 0
-        for y in x:
-            if y[0] > num:
-                break
+    result = 0
+    
+    for i in permutations(dungeons):
+        temp = k
+        count = 0
+        for a in i:
+            if temp >= a[0]:
+                count += 1
+                temp -= a[1]
             else:
-                num -= y[1]
-                answer += 1
-        result.append(answer)
-    return max(result)
+                break
+        
+        if count > result:
+            result = count
+    
+    return result
